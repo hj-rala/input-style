@@ -2,7 +2,8 @@ script------
 
 <script type="text/javascript">
 $(function(){
-	$('.dBox input, .dBox textarea').each(function(){
+	//style1
+	$('.essential input').each(function(){
 		$(this).focus(function(){
 			$(this).siblings('.ntp').animate({'bottom':'0'},300);
 		});
@@ -12,6 +13,25 @@ $(function(){
 			}
 		});
 	});
+	
+	
+	stlye2
+	$('.intT2 input').each(function(){
+		
+		var label = $(this).siblings('label');
+		$(this).focus(function(){
+			label.addClass('focus');
+		});
+		$(this).blur(function(){
+			var content = $(this).val();
+			if (content.length > 0){
+				label.addClass('focus');
+			} else {
+				label.removeClass('focus');
+			}
+		});
+	});
+	
 });
 </script>
 
@@ -20,11 +40,30 @@ $(function(){
 
 
 html------
-
+style1 (input 오른쪽에 타이틀올라옴)
 <li class="essential"><input type="text" placeholder="이름" /><div class="ntp">이름</div></li>
 
 
+style2 (input 타이틀이 위로 작아지면서 올라감)
+<div class="intT2"><input type="text" id="name" /><label for="name">이름</span></div>
+<div class="intT2"><input type="text" id="phone" /><label for="phone">전화번호</span></div>
+
 
 css------
-.essential {position:relative; float:left; width:50%; padding:0 10px 0 0; box-sizing:border-box; overflow:hidden;}
+style1
+.essential {margin-bottom: 100px;position:relative; padding:0 10px 0 0; box-sizing:border-box; overflow:hidden;}
 .ntp {position:absolute; right:20px; bottom:-100%; font-size:15px; color:#000; font-weight:300; letter-spacing:-0.8px; line-height:50px;}
+
+
+style2
+.intT2 {width: 100%; position: relative; margin-bottom: 50px;}
+.intT2 label { font-size: 25px; line-height: 50px; position: absolute; left: 10px; bottom: 0; cursor:inherit;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+.intT2 label.focus {
+	transform: translate3d(0, -50px, 0) scale3d(.75, .75, 1)
+}
